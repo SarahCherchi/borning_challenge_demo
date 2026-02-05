@@ -41,6 +41,10 @@ ACTIVITES = [
      "duree": timedelta(minutes=35, seconds=12), "distance": 5.2, "denivele": 50, "id_utilisateur": 1},
     {"id_activite": 102, "type_activite": EnumActivites.VELO, "date": date(2025, 10, 28),
      "duree": timedelta(hours=1, minutes=40), "distance": 38.5, "denivele": 420, "id_utilisateur": 1},
+    {"id_activite": 125, "type_activite": EnumActivites.RANDONNEE, "date": date(2025, 11, 28),
+    "duree": timedelta(hours=2, minutes=20, seconds=30), "distance": 10.5, "denivele": 100, "id_utilisateur": 1},
+    {"id_activite": 126, "type_activite": EnumActivites.NATATION, "date": date(2025, 12, 4),
+    "duree": timedelta(minutes=45, seconds=30), "distance": 1, "denivele": 0, "id_utilisateur": 1},
 
     # Utilisateur 2
     {"id_activite": 103, "type_activite": EnumActivites.VELO, "date": date(2025, 10, 27),
