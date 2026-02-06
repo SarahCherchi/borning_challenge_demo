@@ -5,28 +5,28 @@ import '../tools/activite_tool.dart';
 
 
 
-class ActivitiesScreen extends StatefulWidget {
-  const ActivitiesScreen({super.key});
+class ActivitiesGroupeScreen extends StatefulWidget {
+  const ActivitiesGroupeScreen({super.key});
 
   @override
-  ActivitiesScreenState createState() => ActivitiesScreenState();
+  ActivitiesGroupeScreenState createState() => ActivitiesGroupeScreenState();
 }
 
-class ActivitiesScreenState extends State<ActivitiesScreen> {
+class ActivitiesGroupeScreenState extends State<ActivitiesGroupeScreen> {
   final ApiService apiService = ApiService();
   late Future<List<Activite>> futureActivites;
 
   @override
   void initState() {
     super.initState();
-    // On appelle les activités de l'utilisateur 1 au démarrage
-    futureActivites = apiService.getUserActivities(1);
+    // On appelle les activités du groupe 1 au démarrage
+    futureActivites = apiService.getTeamActivities(1);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Mes Activités")),
+      appBar: AppBar(title: const Text("Activités de mon groupe")),
       body: FutureBuilder<List<Activite>>(
         future: futureActivites,
         builder: (context, snapshot) {
