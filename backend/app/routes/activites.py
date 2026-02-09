@@ -1,5 +1,6 @@
+from datetime import timedelta
 from fastapi import APIRouter, HTTPException
-from app.models import activite_model
+from app.models import activite_model, stat_activite_model
 from app.database.demo_data import UTILISATEURS, ACTIVITES, EQUIPES
 
 
@@ -45,3 +46,36 @@ def get_activite_equipe(id_equipe: int):
     # Filtre les activités de l'équipe
     activites = [a for a in ACTIVITES if a["id_utilisateur"] in ids_utilisateurs]
     return activites
+
+
+# Statistiques utilisateur #
+
+@router.get("/utilisateur/{id_utilisateur}/stats", response_model=stat_activite_model.StatActiviteModel)
+def get_stats_utilisateur(id_utilisateur: int):
+    """ Retourne les statistiques d'activités pour un utilisateur donnée """
+    # Filtrer les activités de l'utilisateur
+    activites_user = [
+        act for act in ACTIVITES if act["id_utilisateur"] == id_utilisateur
+    ]
+
+    # Calcul des statistiques
+    total_km = sum(act["distance"] for act in activites_user)
+    denivele_cumule = sum(act["denivele"] for act in activites_user)
+
+    # Somme des durées 
+    duree_totale = sum(
+        (act["duree"] for act in activites_user),
+        start=timedelta()  # valeur initiale pour la somme
+    )
+
+    nbr_activites = len(activites_user)
+
+   
+    return stat_activite_model.StatActiviteModel(
+        total_km=total_km,
+        denivele_cumule=denivele_cumule,
+        duree_totale=duree_totale,
+        nbr_activites=nbr_activites
+    )
+    
+

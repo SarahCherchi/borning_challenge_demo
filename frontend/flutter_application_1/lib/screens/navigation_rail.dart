@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screens/activites_groupe.dart';
-//import 'package:flutter_application_1/screens/activites_stats.dart';
+import 'package:flutter_application_1/screens/activites_stats.dart';
 import 'activites_utilisateur.dart';
 
 
@@ -18,7 +18,7 @@ class _NavRailState extends State<NavRail> {
   final List<Widget> _screens = const [
     ActivitiesScreen(),
     ActivitiesGroupeScreen(),
-    //ActivitiesStatsScreen(),
+    ActivitiesStatsScreen(),
   ];
 
   @override
@@ -46,11 +46,11 @@ class _NavRailState extends State<NavRail> {
                   selectedIcon: Icon(Icons.groups),
                   label: Text('Groupe'),
                 ),
-                // NavigationRailDestination(
-                //   icon: Icon(Icons.bar_chart),
-                //   selectedIcon: Icon(Icons.bar_chart),
-                //   label: Text('Stats'),
-                // ),
+                NavigationRailDestination(
+                  icon: Icon(Icons.bar_chart),
+                  selectedIcon: Icon(Icons.bar_chart),
+                  label: Text('Stats'),
+                ),
               ],
             ),
             const VerticalDivider(thickness: 1, width: 1),

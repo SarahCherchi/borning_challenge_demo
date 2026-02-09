@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_application_1/models/stat_user_activite.dart';
 import 'package:http/http.dart' as http;
 import '../models/activite.dart';
 
@@ -28,5 +29,17 @@ class ApiService {
     } else {
       throw Exception('Erreur lors du chargement des activités de l\'équipe');
     }
+  }
+
+
+  Future<StatUserActivite> getStatUserActivities(int idUtilisateur) async{
+    final response = await http.get(.parse('$baseUrl/utilisateur/$idUtilisateur/stats'));
+
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      return StatUserActivite.fromJson(jsonResponse);
+    } else {
+      throw Exception('Erreur lors du chargement des statistiques : ${response.statusCode}');
+      }
   }
 }
